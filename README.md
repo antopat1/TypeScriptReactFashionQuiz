@@ -5,7 +5,7 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 ## Caratteristiche
 
 - **Schermata Iniziale**: Introduzione al quiz con un pulsante per iniziare.
-- **Schermata del Quiz**: Visualizza domande con quattro possibili risposte, di cui solo una è corretta.
+- **Schermata del Quiz**: Visualizza domande con sei possibili risposte, di cui solo una è corretta.
 - **Schermata dei Risultati**: Mostra il punteggio dell'utente e il livello di abilità basato sul numero di risposte corrette.
 - **Opzione di Ricominciare**: Permette agli utenti di rifare il quiz.
 
