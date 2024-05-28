@@ -26,7 +26,7 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 
 ## Utilizzo
 - **Schermata Iniziale: Fare clic sul pulsante "Avvia" per iniziare il quiz.**
-- **Schermata del Quiz: Rispondere alle domande cliccando su una delle quattro opzioni.**
+- **Schermata del Quiz: Rispondere alle domande cliccando su una delle sei opzioni.**
 - **Schermata dei Risultati: Visualizzare il proprio punteggio, fare clic sul pulsante "Restart" per rifare il quiz.**
    
 ## Tecnologie Utilizzate
