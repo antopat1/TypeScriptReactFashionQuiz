@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import Quiz from "./pages/Quiz/Quiz";
 import Results from "./pages/Results/Results";
 import { useSelector } from "react-redux";
-import { RootState } from "../../TypeScriptReactFashionQuiz/src/states/store";
+import { RootState } from "../src/states/store";
 
 const App: React.FC = (): JSX.Element => {
   const { loading } = useSelector((state: RootState) => state.quiz);
