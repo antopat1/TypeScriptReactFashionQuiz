@@ -34,7 +34,7 @@ const Home: React.FC = (): JSX.Element => {
           onClick={startGame}
           className="mt-8 px-8 py-3 bg-gradient-to-r from-blue-300 via-green-600 to-blue-900 rounded-lg hover:opacity-90"
         >
-          <Link to="/quiz">Play</Link>
+          <Link to="/quiz">Avvia</Link>
         </button>
       </div>
     </div>
