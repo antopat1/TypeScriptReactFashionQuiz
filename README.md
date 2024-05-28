@@ -50,7 +50,7 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 - store.ts: Configura lo store di Redux e combina i reducer.
 
 ## Accessing the Site:
-The project has been deployed via Netlify and is accessible at the following URL: [New York Times Clone](https://master--typescriptreactfashionquiz-antopat1.netlify.app/)
+The project has been deployed via Netlify and is accessible at the following URL: [QUIZ MODA SOSTENIBILE](https://master--typescriptreactfashionquiz-antopat1.netlify.app/)
 
 
 ## Credits:
