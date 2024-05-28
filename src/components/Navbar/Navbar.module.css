@@ -1,0 +1,35 @@
+.nav {
+  width: 100%;
+  min-height: 15vh;
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  background-image: url("../../assets/zebra.jpg");
+  background-size: cover;
+  background-position: top;
+}
+
+
+.logo {
+  position: absolute;
+  z-index: 1;
+  width: 180px!important;
+  height: 80px;
+  top: 3.5%;
+  left: 50%;
+  transform: translate(-50%, -4%);
+  filter: blur(0) grayscale(0);
+}
+
+.nav button {
+  display: flex;
+  padding: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+  .logo {
+    top: 1.5%;
+    width: 80px;
+  }
+}
+

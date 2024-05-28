@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 400;
+  user-select: none;
+}
+
+div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(5, 5, 5);
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  font-family: "Kanit";
+  font-size: 14px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  border: none;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+button:hover:enabled {
+  opacity: 0.8;
+}
+
+button:disabled {
+  color: black;
+  opacity: 0.6;
+  cursor: default;
+}
+
+img {
+  position: absolute;
+  z-index: -1;
+  filter: blur(50px) grayscale(50%);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(2, 2, 2);
+}
+
