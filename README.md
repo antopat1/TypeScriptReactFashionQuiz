@@ -48,3 +48,10 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 - userAnswers: Array di risposte dell'utente.
 - quizSlice.ts : Definisce lo slice di Redux per la gestione dello stato del quiz e delle azioni.
 - store.ts: Configura lo store di Redux e combina i reducer.
+
+## Accessing the Site:
+The project has been deployed via Netlify and is accessible at the following URL: [New York Times Clone](https://master--typescriptreactfashionquiz-antopat1.netlify.app/)
+
+
+## Credits:
+This project was developed by [Antonino Paternò](https://github.com/antopat1).
