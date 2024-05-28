@@ -1,6 +1,6 @@
 #  Quiz App Moda Sostenibile
 
-Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzando TypeScript. L'applicazione mira a sensibilizzare sulla moda sostenibile attraverso un quiz divertente e coinvolgente. Gli utenti possono partecipare al quiz, vedere i loro punteggi e condividere i risultati sui social media.
+Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzando TypeScript. L'applicazione mira a sensibilizzare sulla moda sostenibile attraverso un quiz divertente e coinvolgente. Gli utenti possono partecipare al quiz, vedere i loro punteggi e quindi valutare il proprio livello di conocenza .
 
 ## Caratteristiche
 
