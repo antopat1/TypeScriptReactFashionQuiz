@@ -49,9 +49,9 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 - quizSlice.ts : Definisce lo slice di Redux per la gestione dello stato del quiz e delle azioni.
 - store.ts: Configura lo store di Redux e combina i reducer.
 
-## Accessing the Site:
-The project has been deployed via Netlify and is accessible at the following URL: [QUIZ MODA SOSTENIBILE](https://master--typescriptreactfashionquiz-antopat1.netlify.app/)
+## Accesso al Sito:
+Il progetto è stato distribuito tramite Netlify ed è accessibile al seguente URL: [QUIZ MODA SOSTENIBILE](https://master--typescriptreactfashionquiz-antopat1.netlify.app/)
 
 
-## Credits:
-This project was developed by [Antonino Paternò](https://github.com/antopat1).
+## Crediti:
+Questo progetto è stato sviluppato da  [Antonino Paternò](https://github.com/antopat1).
