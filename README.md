@@ -50,7 +50,7 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 - store.ts: Configura lo store di Redux e combina i reducer.
 
 ## Accesso al Sito:
-Il progetto è stato distribuito tramite Netlify ed è accessibile al seguente URL: [QUIZ MODA SOSTENIBILE](https://master--typescriptreactfashionquiz-antopat1.netlify.app/)
+Il progetto è stato distribuito tramite Netlify ed è accessibile al seguente URL: [QUIZ MODA SOSTENIBILE](https://fashionquiz-antopat1.netlify.app/)
 
 
 ## Crediti:
