@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route , Navigate} from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Quiz from "./pages/Quiz/Quiz";
 import Results from "./pages/Results/Results";
@@ -23,6 +23,7 @@ const App: React.FC = (): JSX.Element => {
           />
         )}     
         <Route path="/results" element={<Results />} />
+        <Route path="*" element={<Navigate to="/" />} />     
       </Routes>
     </>
   );

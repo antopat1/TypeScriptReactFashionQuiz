@@ -6,7 +6,7 @@ interface QuizState {
   loading: boolean;
   number: number;
   score: number;
-  localScore:string;
+  previousScore: string;
   questions: IGetQuestions[];
   userAnswers: IAnswerObject[];
 }
@@ -15,7 +15,7 @@ const initialState: QuizState = {
   loading: true,
   number: 0,
   score: 0,
-  localScore:"0",
+  previousScore: "0",
   questions: [],
   userAnswers: [],
 };
@@ -33,8 +33,8 @@ const quizSlice = createSlice({
     setScore: (state, action: PayloadAction<number>) => {
       state.score = action.payload;
     },
-    setLocalScore: (state, action: PayloadAction<string>) => {
-      state.localScore = action.payload;
+    setPreviousScore: (state, action: PayloadAction<string>) => {
+      state.previousScore = action.payload;
     },
     setQuestions: (state, action: PayloadAction<IGetQuestions[]>) => {
       state.questions = [...action.payload];
@@ -43,17 +43,22 @@ const quizSlice = createSlice({
       state.userAnswers = action.payload;
     },
     resetQuiz: (state) => {
-      state.loading = true;
+      state.previousScore = state.score.toString();  // Salva il punteggio prima di resettare
       state.number = 0;
       state.score = 0;
       state.questions = [];
       state.userAnswers = [];
     },
+    clearUserAnswer: (state, action: PayloadAction<number>) => {
+      state.userAnswers[action.payload] = undefined!;
+    },
   },
 });
 
-export const { setLoading, setNumber, setScore, setQuestions, setUserAnswers, resetQuiz,setLocalScore } = quizSlice.actions;
+export const { setLoading, setNumber, setScore, setPreviousScore, setQuestions, setUserAnswers, resetQuiz, clearUserAnswer } = quizSlice.actions;
 
 export const selectQuiz = (state: RootState) => state.quiz;
 
 export default quizSlice.reducer;
+
+

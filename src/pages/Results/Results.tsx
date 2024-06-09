@@ -1,5 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
+import { useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux";
+
 import { RootState } from "../../states/store";
 import { Link } from "react-router-dom";
 import classNames from 'classnames';
@@ -7,6 +10,7 @@ import ResultsCSS from "./Results.module.css";
 import { scoreLevel } from "../../utils/Enum/enum";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { setPreviousScore } from "../../states/quizSlice";
 
 // Funzione per ottenere il messaggio di punteggio in base al risultato
 const getScoreMessage = (score: number): JSX.Element | undefined => {
@@ -65,6 +69,13 @@ const Results: React.FC = (): JSX.Element => {
   const { score } = useSelector((state: RootState) => state.quiz);
   // Ottieni il messaggio di punteggio corrispondente
   const scoreMessage = getScoreMessage(score);
+  
+  
+  const dispatch = useDispatch();
+  // Usa useEffect per aggiornare previousScore quando i risultati vengono mostrati
+  useEffect(() => {
+    dispatch(setPreviousScore(score.toString()));
+  }, [score, dispatch]);
 
   return (
     <>

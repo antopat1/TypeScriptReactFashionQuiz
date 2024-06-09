@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../states/store";
 import {
@@ -6,7 +6,8 @@ import {
   setScore,
   setQuestions,
   setUserAnswers,
-  setLocalScore,
+  setPreviousScore,
+  clearUserAnswer,
 } from "../../states/quizSlice";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
@@ -14,21 +15,21 @@ import QuizCSS from "./Quiz.module.css";
 import { mixArray } from "../../utils/Functions/utils";
 import { circularEconomyQuiz } from "../../utils/Questions/question";
 import { IAnswerObject } from "../../utils/Interface/interface";
-import classNames from 'classnames';
+import classNames from "classnames";
 
+// Ottieni lo stato del quiz dallo store Redux
 const Quiz: React.FC = (): JSX.Element => {
-  // Ottieni lo stato del quiz dallo store Redux
-  const { loading, number, score, questions, userAnswers, localScore } =
+  const { loading, number, score, questions, userAnswers, previousScore } =
     useSelector((state: RootState) => state.quiz);
   const dispatch = useDispatch();
 
-  // Calcola il numero della domanda corrente e il totale delle domande
+// Calcola il numero della domanda corrente e il totale delle domande
   const questionNumber = number + 1;
   const totalQuestion = 10;
 
   // Verifica se la domanda corrente è l'ultima
   const isLastQuestion = questionNumber === totalQuestion;
-
+  
   // Inizializza lo stato del quiz quando il componente viene montato
   useEffect(() => {
     if (!loading) {
@@ -36,67 +37,79 @@ const Quiz: React.FC = (): JSX.Element => {
       dispatch(setQuestions(mixArray(circularEconomyQuiz)));
       // Inizializza le risposte dell'utente, il punteggio locale e il punteggio
       dispatch(setUserAnswers([]));
-      dispatch(setLocalScore(String(localStorage.getItem("quizScore"))));
+      dispatch(setPreviousScore(previousScore)); // Usa il punteggio precedente dallo stato
       dispatch(setScore(0));
     }
-  }, []);
-
-  // Salva il punteggio nel local storage
-  useEffect(() => {
-    localStorage.setItem("quizScore", score.toString());
-  }, [score]);
+  }, [dispatch, loading, previousScore]);
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     const answer = e.currentTarget.value;
+
+    if (userAnswers[number] && userAnswers[number].answer === answer) {
+      dispatch(clearUserAnswer(number));
+      return;
+    }
+    
     const correct = questions[number].correct_answer === answer;
     // Incrementa il punteggio se la risposta è corretta
     if (correct) {
       dispatch(setScore(score + 1));
     }
-    // Memorizza l'informazione sulla risposta dell'utente nello store
+
     const answerObject: IAnswerObject = {
       question: questions[number].question,
       answer: answer,
       isCorrect: correct,
       correct_answer: questions[number].correct_answer,
     };
-    dispatch(setUserAnswers([...userAnswers, answerObject]));
-  };
 
+    const updatedUserAnswers = [...userAnswers];
+    updatedUserAnswers[number] = answerObject;
+    dispatch(setUserAnswers(updatedUserAnswers));
+  };
+  
   // Passa alla domanda successiva
   const nextQuestion = (): void => {
     if (number < 9) {
       dispatch(setNumber(number + 1));
     }
   };
-
+  
   // Torna alla domanda precedente
   const previousQuestion = (): void => {
     if (number + 1 > 1) {
       dispatch(setNumber(number - 1));
     }
   };
-
+  
   // Ricomincia il gioco: Reimposta lo stato del quiz
   const restartGame = (): void => {
+    // dispatch(setPreviousScore(score.toString())); // Se decido di considerare il restart QUIZ con punteggio precedentenullo
     dispatch(setScore(0));
     dispatch(setNumber(0));
     dispatch(setQuestions(mixArray(circularEconomyQuiz)));
     dispatch(setUserAnswers([]));
   };
 
-  
   return (
     <>
       {!loading && questions.length > 1 && (
         <div>
-          <Navbar preaviusQuestion={previousQuestion} restartGame={restartGame} />
+          <Navbar
+            preaviusQuestion={previousQuestion}
+            restartGame={restartGame}
+          />
           <div className="min-h-screen flex items-center justify-center">
-            <div className={classNames(QuizCSS.container, "flex flex-col justify-between items-center")}>
+            <div
+              className={classNames(
+                QuizCSS.container,
+                "flex flex-col justify-between items-center"
+              )}
+            >
               <div className="w-full max-w-4xl px-4">
                 <div className="flex flex-col md:flex-row justify-between">
                   <p className="mb-2 md:mb-0 -ml-5 md: text-lg md:text-3xl lg:-ml-8 xl:-ml-32">
-                    Risultato ultimo Test: {localScore === "0" ? "0/10" : `${localScore}/10`}
+                    Risultato ultimo Test: {previousScore === "0" ? "0/10" : `${previousScore}/10`}
                   </p>
                   <p className="text-lg md:text-3xl -mr-5 lg:-mr-8 xl:-mr-32">
                     Domanda: {questionNumber}/{totalQuestion}
@@ -110,12 +123,22 @@ const Quiz: React.FC = (): JSX.Element => {
                     {questions[number].answers.map((answer) => (
                       <button
                         key={answer}
-                        disabled={userAnswers[number] !== undefined}
                         value={answer}
                         onClick={checkAnswer}
-                        className="w-full h-16 text-lg px-4 py-2 bg-white rounded-lg shadow hover:bg-gray-100 transition transform hover:scale-105 text-center"
+                        className={classNames(
+                          "w-full h-16 text-lg px-4 py-2 bg-white rounded-lg shadow hover:bg-gray-100 transition transform hover:scale-105 text-center",
+                          {
+                            [QuizCSS.selected]:
+                              userAnswers[number]?.answer === answer,
+                          }
+                        )}
                       >
-                        <span className={classNames("block", QuizCSS.textResponsive)}>
+                        <span
+                          className={classNames(
+                            "block",
+                            QuizCSS.textResponsive
+                          )}
+                        >
                           {answer}
                         </span>
                       </button>
@@ -151,12 +174,6 @@ const Quiz: React.FC = (): JSX.Element => {
       )}
     </>
   );
-  
-  
-
- 
-
- 
 };
 
 export default Quiz;
