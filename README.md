@@ -43,7 +43,7 @@ Questo progetto è un'applicazione di quiz basata su React sviluppata utilizzand
 - loading: Booleano per indicare lo stato di caricamento.
 - number: Numero della domanda corrente.
 - score: Punteggio dell'utente.
-- localScore: Ultimo punteggio del quiz dell'utente memorizzato nel local storage.
+- previousScore: Ultimo punteggio del quiz dell'utente memorizzato in una variabili di Stato anzichè nel local storage per evitare possibili exploit.
 - questions: Array di domande.
 - userAnswers: Array di risposte dell'utente.
 - quizSlice.ts : Definisce lo slice di Redux per la gestione dello stato del quiz e delle azioni.
